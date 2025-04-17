@@ -43,7 +43,7 @@ export async function getCachedData<T>(key: string): Promise<T | null> {
   return data ? JSON.parse(data) : null;
 }
 
-export async function setCachedData(key: string, data: any, ttl: number = 3600): Promise<void> {
+export async function setCachedData(key: string, data: any, ttl: number = 90): Promise<void> {
   await redis.setex(key, ttl, JSON.stringify(data));
 }
 

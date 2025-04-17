@@ -2,6 +2,10 @@
 
 A Next.js application that displays cocktail information using the CocktailDB API with Redis caching.
 
+## Live Demo
+
+Check out the live demo: [Cocktail Explorer](https://cocktail-app-roan.vercel.app/)
+
 ## Installation
 
 1. Clone the repository
@@ -57,6 +61,11 @@ If this app needs to grow, here's how we can make it better:
    - Spread the app across different locations for faster access
    - Make sure the app stays fast even with lots of users
    - Keep everything running smoothly during busy times
+
+## Deployment
+
+The application is deployed on Vercel and can be accessed at:
+https://cocktail-app-roan.vercel.app/
 
 ## Getting Started
 

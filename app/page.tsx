@@ -47,6 +47,10 @@ export default function Home() {
 
       {loading ? (
         <div className="text-center py-[var(--spacing-lg)]">Loading...</div>
+      ) : filteredCocktails.length === 0 ? (
+        <div className="text-center py-[var(--spacing-lg)] text-[var(--foreground)] opacity-75">
+          No cocktails found matching "{searchTerm}"
+        </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
           {filteredCocktails.map(cocktail => (

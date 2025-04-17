@@ -17,16 +17,19 @@ const redis = new Redis(process.env.REDIS_URL, {
     }
     return false;
   },
-  enableTLS: true,
-  enableReadyCheck: true,
+  tls: {
+    rejectUnauthorized: false
+  },
   connectTimeout: 20000,
-  keepAlive: 30000,
-  retries: 10,
-  autoResubscribe: true,
-  autoResendUnfulfilledCommands: true,
+  commandTimeout: 30000,
+  lazyConnect: true
 });
 
-redis.on('error', (error) => {
+interface RedisError extends Error {
+  code?: string;
+}
+
+redis.on('error', (error: RedisError) => {
   console.error('Redis connection error:', error);
   if (error.code === 'ECONNRESET') {
     console.log('Attempting to reconnect...');

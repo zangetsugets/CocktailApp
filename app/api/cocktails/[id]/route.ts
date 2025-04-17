@@ -2,12 +2,16 @@ import { getCachedData, setCachedData } from '@/lib/redis';
 import { CocktailDetailResponse } from '@/app/types/cocktail';
 import { NextRequest, NextResponse } from 'next/server';
 
+interface Props {
+  params: Promise<{ id: string }>;
+}
+
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: Props
 ) {
   try {
-    const id = params.id;
+    const { id } = await params;
     const cacheKey = `cocktail:${id}`;
     
    
@@ -16,13 +20,12 @@ export async function GET(
       return NextResponse.json(cached);
     }
 
-   
+    
     const response = await fetch(
       `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
     );
     const data: CocktailDetailResponse = await response.json();
     
- 
     await setCachedData(cacheKey, data);
     
     return NextResponse.json(data);

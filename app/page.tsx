@@ -23,21 +23,32 @@ export default function Home() {
   );
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Cocktail Explorer</h1>
-      
-      <input
-        type="text"
-        placeholder="Search cocktails..."
-        className="w-full max-w-md mb-8 px-4 py-2 border rounded"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+    <div className="min-h-screen container mx-auto max-w-[1200px] px-4 py-[var(--spacing-lg)]">
+      <header className="text-center mb-[var(--spacing-xl)] max-w-2xl mx-auto">
+        <h1 className="text-3xl md:text-4xl font-semibold">
+          Cocktail Explorer
+        </h1>
+      </header>
+
+      <div className="max-w-2xl mx-auto mb-[var(--spacing-xl)] flex justify-center">
+        <input
+          type="text"
+          placeholder="Search cocktails..."
+          className="w-full max-w-xl px-6 py-4 border border-[var(--input-border)]
+                     rounded-full bg-[var(--card-background)] shadow-[var(--input-shadow)]
+                     text-lg placeholder:text-[var(--foreground)]/60
+                     focus:outline-none focus:border-[var(--input-focus-border)]
+                     focus:shadow-[var(--input-focus-shadow)]
+                     transition-all duration-300"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
 
       {loading ? (
-        <p>Loading...</p>
+        <div className="text-center py-[var(--spacing-lg)]">Loading...</div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
           {filteredCocktails.map(cocktail => (
             <CocktailCard key={cocktail.idDrink} cocktail={cocktail} />
           ))}

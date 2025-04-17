@@ -14,7 +14,7 @@ export default function CocktailCard({ cocktail }: { cocktail: CocktailListItem 
           priority={true}
         />
       </div>
-      <div className="p-4">
+      <div className="p-4 bg-[#FDFCF8]">
         <h2 className="text-lg font-semibold truncate">{cocktail.strDrink}</h2>
       </div>
     </div>

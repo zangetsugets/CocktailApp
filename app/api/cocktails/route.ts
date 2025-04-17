@@ -24,14 +24,14 @@ export async function GET(request: NextRequest) {
       drinks = data.drinks;
     }
 
-    // Filter by search term if provided
+    
     if (search) {
       drinks = drinks.filter(drink => 
         drink.strDrink.toLowerCase().includes(search.toLowerCase())
       );
     }
 
-    // Calculate pagination
+  
     const start = (page - 1) * perPage;
     const paginatedDrinks = drinks.slice(start, start + perPage);
     const total = drinks.length;
